@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock, Paper, Scissors Game</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0;
+    }
+    h1 {
+      color: #333;
+      font-size: 2.5em;
+    }
+    p {
+      font-size: 1.2em;
+      color: #555;
+    }
+    button {
+      padding: 15px 30px;
+      margin: 15px;
+      font-size: 18px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    .choices {
+      display: flex;
+      justify-content: center;
+    }
+    .choice {
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      margin: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .choice:hover {
+      transform: scale(1.1);
+    }
+    .emoji {
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rock, Paper, Scissors</h1>
+  <p>Can you beat the computer? Choose wisely!</p>
+
+  <div class="choices">
+    <div class="choice" onclick="playGame('rock')">
+      <span class="emoji">🪨</span>
+    </div>
+    <div class="choice" onclick="playGame('paper')">
+      <span class="emoji">📄</span>
+    </div>
+    <div class="choice" onclick="playGame('scissors')">
+      <span class="emoji">✂️</span>
+    </div>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    function playGame(playerChoice) {
+      const choices = ['rock', 'paper', 'scissors'];
+      const emojis = { rock: '🪨', paper: '📄', scissors: '✂️' };
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+      let result = '';
+      if (playerChoice === computerChoice) {
+        result = `🤔 It's a tie! Both chose ${emojis[playerChoice]}`;
+      } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        result = `🏆 You win! ${emojis[playerChoice]} beats ${emojis[computerChoice]}`;
+      } else {
+        result = `😔 You lose! ${emojis[computerChoice]} beats ${emojis[playerChoice]}`;
+      }
+
+      document.getElementById('result').innerText = result;
+    }
+  </script>
+</body>
+</html>
